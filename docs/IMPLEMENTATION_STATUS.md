@@ -1,35 +1,43 @@
 # MONSTER VENDING — Implementation Status
 
 Date: 2026-09-16
-Project-wide Canonical: **GAME_DEV_MASTER_RULES v1.7**
+Project-wide Canonical: **GAME_DEV_MASTER_RULES v1.7** (physical-device rule pending project-wide promotion)
 
 ## LAST VERIFIED DONE
-- MV-01 Project Foundation: scaffold aligned to Final Spec v1.0.
-- MV-02 Data Definitions: 8 canonical species + Machine 01 balance data implemented.
-- MV-03 Game State / Save: domain logic and save schema v2 implemented as code.
-- MV-04 Vend Core Presentation: HOME hierarchy + VEND feedback path implemented as code.
-- MV-05 Capsule / Reveal Presentation: Machine -> Capsule -> Reveal -> Habitat entry implemented as code.
-- MV-06 Habitat polish: warm/organic Habitat presentation, 4→8 layout, asynchronous ambient creature motion implemented as code.
-- MV-07 Economy instrumentation: offline-income calculation, 60/300/600 sec checkpoints, coins-blocked timing and local analytics hooks implemented as code.
+- MV-01 Project Foundation.
+- MV-02 Data Definitions: 8 canonical species + Machine 01 balance data.
+- MV-03 Game State / Save: domain logic and save schema v2.
+- MV-04 Vend Core Presentation.
+- MV-05 Capsule / Reveal Presentation.
+- MV-06 Habitat polish: 4→8 layout + ambient creature motion.
+- MV-07 Economy instrumentation: offline-income + checkpoints + coins-blocked timing.
+- MV-08 Collection Sheet: HOME-preserving bottom sheet, 8 species, discovered/undiscovered states, rarity, ★, DNA and income.
+- GitHub Runtime Gate: static validators, Godot 4.7.2 import/parser, and headless runtime smoke all PASS.
 
 ## EVIDENCE
-- Static validators included under `tools/`.
-- 2000-run balance sanity target: median ~11 VEND / 10 min and ~6 unique species.
-- GitHub sync branch: `sync-v0.4`.
+- PR #1 synced the v0.4 baseline and passed Godot CI.
+- PR #2 implemented MV-08 and passed all static checks + Godot 4.7.2 parser + headless runtime smoke.
+- main after MV-08: `ba168228eaf2d162ff12d489183fcaa2e6c279f5`.
+- Web Device Test export pipeline is being established in `device-test-gate`.
 
 ## BLOCKED / NOT YET VERIFIED
-- Godot parser/runtime success
-- Actual tween/input behavior success
-- Touch behavior success
-- Mobile export success
-- Real `coins_blocked_seconds` result
-- Actual start-vs-10-minute visual comparison
+**Feature development is intentionally BLOCKED at MV-08 until physical-device testing passes.**
+
+Not yet verified on an actual smartphone:
+- Web export launch in Safari/Chrome on device
+- critical touch targets and gesture behavior
+- portrait layout / clipping / readability
+- VEND -> Capsule -> Reveal -> Habitat complete path by touch
+- Collection open/scroll/close by touch
+- physical-device frame pacing / heat / input latency
+- native iOS/Android Safe Area, haptics, lifecycle and persistence
 
 ## NEXT
-1. Pull-request CI Runtime Gate.
-2. Fix parser/runtime failures if any.
-3. After runtime passes: MV-08 Collection Sheet.
-4. Then MV-09 Duplicate / DNA presentation verification.
-5. Then MV-10 Growth Visual pass.
+1. CI-export a single-thread Godot Web build with export templates.
+2. Prepare GitHub Pages deployment configuration but do not publish without explicit approval.
+3. Open the published test build on a physical smartphone after approval.
+4. Record commit SHA + device/OS + screenshots/recording + checklist result.
+5. Fix any launch/input/layout/progression defect before MV-09.
+6. After Physical Device Gate PASS: MV-09 Duplicate / DNA presentation.
 
-Do not expand beyond eight species until VEND -> REVEAL -> HABITAT and actual waiting-time feel pass runtime/game-feel verification.
+See `docs/DEVICE_TEST_GATE.md`.
