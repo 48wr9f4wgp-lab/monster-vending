@@ -1,0 +1,28 @@
+; Engine configuration file.
+; MONSTER VENDING Vertical Slice
+config_version=5
+
+[application]
+config/name="MONSTER VENDING"
+run/main_scene="res://scenes/main/Main.tscn"
+
+[display]
+
+[display/window]
+size/viewport_width=720
+size/viewport_height=1280
+size/window_width_override=360
+size/window_height_override=640
+stretch/mode="canvas_items"
+handheld/orientation=1
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+
+[autoload]
+DataRepository="*res://scripts/autoload/data_repository.gd"
+GameState="*res://scripts/autoload/game_state.gd"
+SaveService="*res://scripts/autoload/save_service.gd"
+AnalyticsService="*res://scripts/autoload/analytics_service.gd"

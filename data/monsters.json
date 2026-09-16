@@ -1,0 +1,92 @@
+[
+  {
+    "id": "puff",
+    "name": "PUFF",
+    "rarity": "common",
+    "weight": 17.333333,
+    "income_per_second": 0.6,
+    "body_family": "blob",
+    "tags": ["cute"],
+    "signature_reaction": "inflate",
+    "supports_variant": false
+  },
+  {
+    "id": "bloop",
+    "name": "BLOOP",
+    "rarity": "common",
+    "weight": 17.333333,
+    "income_per_second": 0.6,
+    "body_family": "blob",
+    "tags": ["cute", "weird"],
+    "signature_reaction": "squash_recover",
+    "supports_variant": true
+  },
+  {
+    "id": "shroomy",
+    "name": "SHROOMY",
+    "rarity": "common",
+    "weight": 17.333333,
+    "income_per_second": 0.6,
+    "body_family": "biped",
+    "tags": ["cute", "wild"],
+    "signature_reaction": "sudden_sleep",
+    "decoration_tag": "plant",
+    "supports_variant": false
+  },
+  {
+    "id": "pricky",
+    "name": "PRICKY",
+    "rarity": "uncommon",
+    "weight": 14.0,
+    "income_per_second": 0.75,
+    "body_family": "biped",
+    "tags": ["wild"],
+    "signature_reaction": "spike_angry",
+    "supports_variant": false
+  },
+  {
+    "id": "peeko",
+    "name": "PEEKO",
+    "rarity": "uncommon",
+    "weight": 14.0,
+    "income_per_second": 0.75,
+    "body_family": "float",
+    "tags": ["weird"],
+    "signature_reaction": "track_pointer",
+    "supports_variant": false
+  },
+  {
+    "id": "gobble",
+    "name": "GOBBLE",
+    "rarity": "rare",
+    "weight": 13.0,
+    "income_per_second": 0.95,
+    "body_family": "biped",
+    "tags": ["weird", "wild"],
+    "signature_reaction": "try_eat_food",
+    "decoration_tag": "food",
+    "supports_variant": false
+  },
+  {
+    "id": "sparky",
+    "name": "SPARKY",
+    "rarity": "epic",
+    "weight": 5.5,
+    "income_per_second": 1.2,
+    "body_family": "float",
+    "tags": ["cute", "weird"],
+    "signature_reaction": "electric_sneeze",
+    "supports_variant": false
+  },
+  {
+    "id": "mimic",
+    "name": "MIMIC",
+    "rarity": "legendary",
+    "weight": 1.5,
+    "income_per_second": 1.5,
+    "body_family": "biped",
+    "tags": ["weird"],
+    "signature_reaction": "return_to_machine",
+    "supports_variant": false
+  }
+]

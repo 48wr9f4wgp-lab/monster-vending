@@ -1,0 +1,50 @@
+{
+  "id": "machine_01",
+  "starting_coins": 10.0,
+  "vend_costs": [
+    0,
+    20,
+    60,
+    160,
+    220,
+    240,
+    250,
+    260,
+    270,
+    280,
+    290,
+    300,
+    310
+  ],
+  "vend_cost_increment_after_table": 10,
+  "machine_level_xp": {
+    "2": 7,
+    "3": 20,
+    "4": 34,
+    "5": 52
+  },
+  "reputation": {
+    "new_by_rarity": {
+      "common": 10,
+      "uncommon": 12,
+      "rare": 18,
+      "epic": 25,
+      "legendary": 40
+    },
+    "star_2": 5,
+    "star_3": 10,
+    "decoration_unlock": 30,
+    "habitat_expand": 45,
+    "habitat_visual_upgrade": 75,
+    "future_machine_condition": 120
+  },
+  "habitat_capacity": {
+    "start": 4,
+    "expanded": 8
+  },
+  "dial_weight_multiplier": 1.5,
+  "offline_income_multiplier": 0.35,
+  "offline_cap_seconds": 28800,
+  "offline_vend_cap": 3,
+  "protected_pulls": 6
+}

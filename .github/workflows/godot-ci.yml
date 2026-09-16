@@ -1,0 +1,43 @@
+name: Godot CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run static validators
+        run: |
+          python tools/static_validate.py
+          python tools/presentation_static_check.py
+          python tools/economy_static_check.py
+          python tools/balance_sanity.py
+
+      - name: Set up Godot 4.7.2
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.7.2
+          use-dotnet: false
+          include-templates: false
+
+      - name: Import project and parse scripts
+        run: godot --headless --path . --editor --quit
+
+      - name: Runtime smoke test
+        run: godot --headless --path . --quit-after 180
