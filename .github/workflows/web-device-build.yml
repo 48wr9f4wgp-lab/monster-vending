@@ -1,0 +1,52 @@
+name: Web Device Build
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-web-device-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Godot 4.7.2 with export templates
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.7.2
+          use-dotnet: false
+          include-templates: true
+
+      - name: Export Web device-test build
+        run: |
+          mkdir -p build/web
+          godot --headless --path . --export-release "Web Device Test" build/web/index.html
+
+      - name: Validate Web artifact
+        run: |
+          test -s build/web/index.html
+          test -s build/web/index.js
+          test -s build/web/index.wasm
+          test -s build/web/index.pck
+          python3 -m http.server 8080 --directory build/web >/tmp/mv-web.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          curl --fail --silent --show-error http://127.0.0.1:8080/index.html >/dev/null
+          find build/web -maxdepth 1 -type f -printf '%f %s bytes\n' | sort
+
+      - name: Upload Web device-test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: monster-vending-web-device-test
+          path: build/web
+          if-no-files-found: error
+          retention-days: 7
