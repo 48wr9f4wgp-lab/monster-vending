@@ -1,10 +1,8 @@
-# DISABLED BY DESIGN.
-# Rename this file to pages-deploy.yml only after explicit user approval to publish the device-test build.
-# Enabling this workflow creates/updates a publicly reachable GitHub Pages deployment.
-
 name: Deploy Physical Device Test to GitHub Pages
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
