@@ -92,14 +92,16 @@ func _read_and_validate(path: String) -> Dictionary:
     var file := FileAccess.open(path, FileAccess.READ)
     if file == null:
         return {}
-    var parsed := JSON.parse_string(file.get_as_text())
+    var parsed: Variant = JSON.parse_string(file.get_as_text())
     if not (parsed is Dictionary):
         return {}
-    if int(parsed.get("schema_version", -1)) != SCHEMA_VERSION:
+    var envelope: Dictionary = parsed
+    if int(envelope.get("schema_version", -1)) != SCHEMA_VERSION:
         return {}
-    var payload := parsed.get("payload", {})
-    if not (payload is Dictionary):
+    var payload_value: Variant = envelope.get("payload", {})
+    if not (payload_value is Dictionary):
         return {}
-    if String(parsed.get("checksum", "")) != _checksum(payload):
+    var payload: Dictionary = payload_value
+    if String(envelope.get("checksum", "")) != _checksum(payload):
         return {}
-    return parsed
+    return envelope
