@@ -20,7 +20,7 @@ func _load_json(path: String) -> Variant:
     return JSON.parse_string(file.get_as_text())
 
 func _load_monsters() -> void:
-    var parsed := _load_json(MONSTER_DATA_PATH)
+    var parsed: Variant = _load_json(MONSTER_DATA_PATH)
     if not (parsed is Array):
         push_error("MONSTER VENDING: monster data must be an array")
         return
@@ -33,7 +33,7 @@ func _load_monsters() -> void:
             monster_by_id[String(monster["id"])] = monster
 
 func _load_machine() -> void:
-    var parsed := _load_json(MACHINE_DATA_PATH)
+    var parsed: Variant = _load_json(MACHINE_DATA_PATH)
     if not (parsed is Dictionary):
         push_error("MONSTER VENDING: machine data must be an object")
         return
