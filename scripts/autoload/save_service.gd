@@ -84,7 +84,7 @@ func _build_payload() -> Dictionary:
     }
 
 func _checksum(payload: Dictionary) -> String:
-    return (JSON.stringify(payload).sha256_text())
+    return JSON.stringify(payload).sha256_text()
 
 func _read_and_validate(path: String) -> Dictionary:
     if not FileAccess.file_exists(path):
@@ -92,14 +92,16 @@ func _read_and_validate(path: String) -> Dictionary:
     var file := FileAccess.open(path, FileAccess.READ)
     if file == null:
         return {}
-    var parsed := JSON.parse_string(file.get_as_text())
-    if not (parsed is Dictionary):
+    var parsed_value: Variant = JSON.parse_string(file.get_as_text())
+    if not (parsed_value is Dictionary):
         return {}
+    var parsed: Dictionary = parsed_value
     if int(parsed.get("schema_version", -1)) != SCHEMA_VERSION:
         return {}
-    var payload := parsed.get("payload", {})
-    if not (payload is Dictionary):
+    var payload_value: Variant = parsed.get("payload", {})
+    if not (payload_value is Dictionary):
         return {}
+    var payload: Dictionary = payload_value
     if String(parsed.get("checksum", "")) != _checksum(payload):
         return {}
     return parsed
