@@ -300,7 +300,7 @@ func apply_offline_income(away_seconds: float) -> float:
     return reward
 
 func tick_passive_income(delta_seconds: float = 1.0) -> void:
-    var amount := passive_income_per_second() * max(0.0, delta_seconds)
+    var amount: float = passive_income_per_second() * maxf(0.0, delta_seconds)
     if amount <= 0.0:
         return
     coins += amount
